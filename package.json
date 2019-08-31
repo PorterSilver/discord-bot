@@ -19,8 +19,7 @@
     "fs": "0.0.1-security",
     "fs-extra": "^8.1.0",
     "request": "^2.88.0",
-    "request-promise-native": "^1.0.7",
-    "typescript": "^3.6.2"
+    "request-promise-native": "^1.0.7"
   },
   "devDependencies": {
     "@types/dotenv": "^6.1.1",
