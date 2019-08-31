@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "tsc && node dist/app.js",
+    "tsc": "./node_modules/typescript/bin/tsc",
     "build": "tsc",
-    "dev": "tsc && nodemon dist/app.js",
-    "tsc": "./node_modules/typescript/bin/tsc"
+    "dev": "tsc && nodemon dist/app.js"
   },
   "keywords": [],
   "author": "",
