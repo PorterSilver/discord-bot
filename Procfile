@@ -1,1 +1,1 @@
-web: node .\dist\app.js
+web: npm install && npm tsc && node .\dist\app.js
