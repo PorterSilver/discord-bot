@@ -39,4 +39,4 @@ client.on("message", (msg) => {
     }
 });
 client.login(process.env.BOT_TOKEN);
-//# sourceMappingURL=app.js.map
+//# sourceMappingURL=index.js.map
