@@ -6,7 +6,7 @@
   "scripts": {
     "start": "tsc && node dist/app.js",
     "dev": "tsc && nodemon dist/app.js",
-    "tsc": "npm install **./node_modules/typescript/bin/tsc"
+    "tsc": "./node_modules/typescript/bin/tsc"
   },
   "keywords": [],
   "author": "",
