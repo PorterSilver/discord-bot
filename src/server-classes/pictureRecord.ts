@@ -1,16 +1,16 @@
-import { prop, Typegoose, ModelType, InstanceType } from 'typegoose';
+import { prop, Typegoose } from "typegoose";
 
-export class PictureRecord extends Typegoose{
+export class PictureRecord extends Typegoose {
     @prop({ required: true })
-    ServerName!: string;
+    public ServerName!: string;
     @prop({ required: true })
-    Time!: Date;
+    public Time!: Date;
     @prop({ required: true })
-    Url!: string;
+    public Url!: string;
     @prop({ required: true })
-    Channel!: string; 
+    public Channel!: string;
     @prop({ required: true })
-    ChannelName!: String;
+    public ChannelName!: string;
     @prop({ required: true })
-    Date!: Date;
-};
+    public Date!: Date;
+}

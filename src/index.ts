@@ -10,7 +10,7 @@ client.on("ready", () => {
 });
 
 client.on("message", (msg) => {
-    var fixTwitterImage = new FixTwitterImage();
+    const fixTwitterImage = new FixTwitterImage();
     fixTwitterImage.fixTwitterPictureMessage(msg);
 });
 
