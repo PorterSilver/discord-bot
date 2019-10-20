@@ -1,16 +1,16 @@
-import { Message, Attachment } from "discord.js"
+import { Attachment, Message } from "discord.js";
+import * as fs from "fs-extra";
 import * as request from "request-promise-native";
-import * as fs from "fs-extra"
 
-import { DiscordHelper } from "./discordHelpers";
+import { DiscordHelper } from "../discordHelpers";
 
 export class FixTwitterImage {
-    ImageDirectory = "./images";
+    public ImageDirectory = "./images";
 
-    fixTwitterPictureMessage(msg: Message) {
+    public fixTwitterPictureMessage(msg: Message) {
         const discordHelper = new DiscordHelper();
 
-        let urlNames = discordHelper.returnAttachmentUrl(msg).filter((x) => x.url.includes(".jpg_large"));
+        const urlNames = discordHelper.returnAttachmentUrl(msg).filter((x) => x.url.includes(".jpg_large"));
         discordHelper.checkAndCreateFolder(this.ImageDirectory + "/");
 
         if (urlNames.length > 0) {
@@ -32,4 +32,3 @@ export class FixTwitterImage {
         }
     }
 }
-

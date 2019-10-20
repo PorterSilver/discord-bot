@@ -1,7 +1,7 @@
 import env from "dotenv";
 import mongoose from "mongoose";
 import process from "process";
-import { PictureRecord } from "../server-classes/pictureRecord";
+import { PictureRecord } from "./server-classes/pictureRecord";
 
 export class MongooseSaveImage {
     constructor() {

@@ -1,8 +1,8 @@
 import { Message } from "discord.js";
-import * as fs from "fs-extra"
+import * as fs from "fs-extra";
 
 export class DiscordHelper {
-    returnAttachmentUrl(msg: Message) {
+    public returnAttachmentUrl(msg: Message) {
         return msg.attachments.map((elm) => {
             return {
                 name: elm.filename,
@@ -11,9 +11,13 @@ export class DiscordHelper {
         });
     }
 
-    checkAndCreateFolder(filePath: string) {
+    public checkAndCreateFolder(filePath: string) {
         if (!fs.existsSync(filePath)) {
             fs.mkdirsSync(filePath);
         }
+    }
+
+    public returnArguments(message: Message, prefix: string) {
+        return message.content.slice(prefix.length).split(/ +/);
     }
 }
