@@ -13,12 +13,18 @@ export class AddUser {
                 this.setPermissions(channel, user);
             });
         } else {
-            args.forEach((userName) => {
-                const user = client.users.find((serverUser) => serverUser.username === userName);
-                if (user) {
-                    this.setPermissions(channel, user);
-                }
-            });
+            const regEx = /\"[A-z]*\"/g;
+            const argCollection = (args.join(" ")).replace(/ /g, "").match(regEx);
+
+            if (argCollection) {
+                argCollection.forEach((userName) => {
+                    const userNameClean = userName.replace(/\"/g, "");
+                    const user = client.users.find((serverUser) => serverUser.username === userNameClean);
+                    if (user) {
+                        this.setPermissions(channel, user);
+                    }
+                });
+            }
         }
     }
 

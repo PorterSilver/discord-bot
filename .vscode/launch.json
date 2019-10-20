@@ -12,11 +12,7 @@
             "program": "${workspaceFolder}\\dist\\index.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
-            ],
-            "runtimeExecutable": "npm",
-            "runtimeArgs": [
-                "run-script", "dev"
-            ],
+            ]
         }
     ]
 }
