@@ -30,7 +30,7 @@ export class AddUser {
 
     private setPermissions(channel: TextChannel, user: User) {
         channel.overwritePermissions(user, {
-            READ_MESSAGE_HISTORY: false,
+            READ_MESSAGE_HISTORY: true,
             SEND_MESSAGES: true,
             VIEW_CHANNEL: true,
         });
