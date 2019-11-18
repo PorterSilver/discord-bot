@@ -32,22 +32,23 @@ export class AddUser {
                     }
                 });
             } else {
+                // tslint:disable-next-line: max-line-length
+                message.author.send("This fallback option only supports one user at a time," + 
+                                        "it's recommended that you either use direct @ing or indirect text only @ing");
+                // tslint:disable-next-line: prefer-const
+                let copyUsers = Object.assign({}, allUsers);
                 args.forEach((argument: string) => {
                     const filteredArg = argument.replace(/[^a-zA-Z]/g, "");
-                    if (allUsers.size <= 1) {
-                        return;
-                    }
-
                     allUsers.forEach((user, key) => {
                         const trueName = (user.nickname !== null) ? user.nickname : user.displayName;
                         if (!trueName.includes(filteredArg)) {
-                            allUsers.delete(key);
+                            copyUsers.delete(key);
                         }
                     });
                 });
 
-                if (allUsers.size > 0) {
-                    allUsers.forEach((user) => {
+                if (copyUsers.size > 0) {
+                    copyUsers.forEach((user) => {
                         this.setPermissions(channel, user.user);
                     });
                 }
