@@ -7,47 +7,51 @@ export class AddUser {
     public execute(message: Message, args: string[], client: Client) {
         const channel = message.channel as TextChannel;
         const userAdded = message.mentions.users;
+        // tslint:disable-next-line: prefer-const
+        let allUsers = message.guild.members;
 
         if (userAdded.size > 0) {
             userAdded.forEach((user) => {
                 this.setPermissions(channel, user);
             });
         } else {
-            // tslint:disable-next-line: prefer-const
-            let allUsers = message.guild.members;
+            const fullArgs = (args.join(" "));
 
-            args.forEach((argument: string) => {
-                const filteredArg = argument.replace(/[^a-zA-Z]/g, "");
-                if (allUsers.size <= 1) {
-                    return;
+            if (fullArgs.includes("@")) {
+                if (fullArgs.length - fullArgs.replace("@", "").length === 1) {
+                    const newUser = client.users.get(fullArgs.replace("@", ""));
+                    if (newUser !== undefined) {
+                        this.setPermissions(channel, newUser);
+                    }
                 }
-
-                allUsers.forEach((user, key) => {
-                    const trueName = (user.nickname !== null) ? user.nickname : user.displayName;
-                    if (!trueName.includes(filteredArg)) {
-                        allUsers.delete(key);
+                fullArgs.split("@").forEach((potenialUser) => {
+                    const filteredArg = potenialUser.replace(/[^a-zA-Z]/g, "");
+                    const newUser = client.users.get(filteredArg);
+                    if (newUser !== undefined) {
+                        this.setPermissions(channel, newUser);
                     }
                 });
-            });
+            } else {
+                args.forEach((argument: string) => {
+                    const filteredArg = argument.replace(/[^a-zA-Z]/g, "");
+                    if (allUsers.size <= 1) {
+                        return;
+                    }
 
-            if (allUsers.size > 0) {
-                allUsers.forEach((user) => {
-                    this.setPermissions(channel, user.user);
+                    allUsers.forEach((user, key) => {
+                        const trueName = (user.nickname !== null) ? user.nickname : user.displayName;
+                        if (!trueName.includes(filteredArg)) {
+                            allUsers.delete(key);
+                        }
+                    });
                 });
+
+                if (allUsers.size > 0) {
+                    allUsers.forEach((user) => {
+                        this.setPermissions(channel, user.user);
+                    });
+                }
             }
-
-            // const regEx = /\"[A-z]*\"/g;
-            // const argCollection = (args.join(" ")).replace(/ /g, "").match(regEx);
-
-            // if (argCollection) {
-            //     argCollection.forEach((userName) => {
-            //         const userNameClean = userName.replace(/\"/g, "");
-            //         const user = client.users.find((serverUser) => serverUser.username === userNameClean);
-            //         if (user) {
-            //             this.setPermissions(channel, user);
-            //         }
-            //     });
-            // }
         }
     }
 

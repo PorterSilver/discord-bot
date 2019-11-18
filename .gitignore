@@ -62,3 +62,4 @@ typings/
 
 # Exclude the dist folder from github
 dist/
+.vscode/settings.json
